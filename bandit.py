@@ -1,6 +1,9 @@
 import os
 import time
 import random
+from colorama import init, Fore, Back, Style
+
+
 
 
 from phonenumbers import carrier, geocoder, timezone
@@ -80,7 +83,7 @@ def returning():
     global answer
     global start
     global bstart
-    print("Returning")
+    print(Fore.RESET + "Returning")
     time.sleep(1)
     clear()
     start = True
@@ -92,8 +95,9 @@ while True:
         bstart = int(input("0 to enter to this tool: "))
         if bstart == 0:
             clear()
-            print(bandit_title)
-            print("We're BANDIT")
+            init()
+            print(Fore.RED + bandit_title)
+            print(Fore.LIGHTRED_EX + Style.BRIGHT + "We're BANDIT")
             options()
             answer = int(input("Choose one number and press enter: "))
             if answer == 0:
