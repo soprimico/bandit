@@ -2,7 +2,7 @@ import os
 import time
 import random
 from colorama import init, Fore, Back, Style
-
+import requests
 
 
 
@@ -56,7 +56,26 @@ def phonefinder():
     except Exception as e:
         print("Error:", e)
 
+def lookup_ip():
+    ip_address = input("Enter a public IP address: ").strip()
+    url = f"https://ipwhois.app/json/{ip_address}"
 
+    try:
+        resp = requests.get(url, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+
+        if data.get("success", True):
+            print(f"IP: {data.get('ip')}")
+            print(f"ISP: {data.get('isp')}")
+            print(f"Organization: {data.get('org')}")
+            print(f"Country: {data.get('country')}")
+            print(f"ASN: {data.get('asn')}")
+        else:
+            print(f"Lookup failed: {data.get('message', 'Unknown error')}")
+
+    except requests.exceptions.RequestException as e:
+        print("Error:", e)
 
 bandit_title = """
 ██████╗░░█████╗░███╗░░██╗██████╗░██╗████████╗
@@ -77,6 +96,7 @@ def options():
     print("0 return")
     print("1 russian wheel")
     print("2 phone basic info")
+    print("3 ip lookup")
     print("99 exit")
     
 def returning():
@@ -116,6 +136,9 @@ while True:
             if answer == 2:
                 clear()
                 phonefinder()
+            if answer == 3:
+                clear()
+                lookup_ip()
 
             if answer == 99:
                 start = False
