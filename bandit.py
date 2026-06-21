@@ -141,6 +141,7 @@ while True:
                 lookup_ip()
 
             if answer == 99:
+                clear()
                 start = False
                 break
         
