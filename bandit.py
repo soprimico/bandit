@@ -3,7 +3,7 @@ import time
 import random
 from colorama import init, Fore, Back, Style
 import requests
-
+import exifread
 
 
 from phonenumbers import carrier, geocoder, timezone
@@ -15,7 +15,7 @@ def phonefinder():
     try:
         parsed = phonenumbers.parse(numero, None)
 
-        print("\n=== RESULTADOS ===")
+        print("\n=== Resultados ===")
         print("Código país:", parsed.country_code)
         print("Número nacional:", parsed.national_number)
 
@@ -53,6 +53,24 @@ def phonefinder():
             ", ".join(timezone.time_zones_for_number(parsed))
         )
 
+    except Exception as e:
+        print("Error:", e)
+
+def image_exif():
+    path = input("Image file name (must be in the same folder as this script, e.g. hello.png): ").strip()
+    try:
+        with open(path, 'rb') as image_file:
+            tags = exifread.process_file(image_file)
+
+        print("\n=== EXIF DATA ===")
+        if not tags:
+            print("No se encontraron datos EXIF.")
+        else:
+            for tag in tags.keys():
+                print(f"{tag}: {tags[tag]}")
+
+    except FileNotFoundError:
+        print("file not found! MIGHT BE BECAUSE ITS NOT ON THE SAME FOLDER AS THE SCRIPT!")
     except Exception as e:
         print("Error:", e)
 
@@ -97,8 +115,9 @@ def options():
     print("1 russian wheel")
     print("2 phone basic info")
     print("3 ip lookup")
+    print("4 image exif")
     print("99 exit")
-    
+
 def returning():
     global answer
     global start
@@ -139,6 +158,9 @@ while True:
             if answer == 3:
                 clear()
                 lookup_ip()
+            if answer == 4:
+                clear()
+                image_exif()
 
             if answer == 99:
                 clear()
