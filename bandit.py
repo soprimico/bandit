@@ -116,6 +116,7 @@ def options():
     print("2 phone basic info")
     print("3 ip lookup")
     print("4 image exif")
+    print("5 phishing")
     print("99 exit")
 
 def returning():
@@ -161,6 +162,12 @@ while True:
             if answer == 4:
                 clear()
                 image_exif()
+            if answer == 5:
+                clear()
+                print("get pple ips by link and more ;)")
+                time.sleep(1)
+                clear()
+                print("executing...")
 
             if answer == 99:
                 clear()
