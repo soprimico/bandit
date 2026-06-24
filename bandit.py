@@ -116,7 +116,7 @@ def options():
     print("2 phone basic info")
     print("3 ip lookup")
     print("4 image exif")
-    print("5 phishing")
+    print("5 nmap (search ports and more on networks)")
     print("99 exit")
 
 def returning():
@@ -164,10 +164,11 @@ while True:
                 image_exif()
             if answer == 5:
                 clear()
-                print("get pple ips by link and more ;)")
+                print("LINUX OS NEEEDED!!!")
                 time.sleep(1)
                 clear()
-                print("executing...")
+                os.system("sudo apt install nmap")
+
 
             if answer == 99:
                 clear()
