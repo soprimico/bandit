@@ -95,6 +95,34 @@ def lookup_ip():
     except requests.exceptions.RequestException as e:
         print("Error:", e)
 
+def nmapPersCMD():
+    global commando
+    global nmapstop
+    ip_opala = ""
+    commando = input("bandit cmd>: ")
+    if commando == "ex1":
+        nmapstop = True
+        return
+    if commando == "start nmap now":
+        clear()
+        print("Diferent types of attack: (put command: what (number of command) for know what it does): ")
+        print("(example: what 1)")
+        print("number 1: sudo start nmap attack 1")
+    if commando == "what 1":
+        print("Scans all TCP ports, detects running services and versions, and provides verbose output.")
+    if commando == "sudo start nmap attack 1":
+        clear()
+        inputip = input("Put here the public or private ip: ")
+        ip_opala = inputip
+        os.system(f"nmap -Pn -p- -sV -vv {ip_opala}")
+    if commando == "help":
+        clear()
+        print(Fore.GREEN + "Nmap tool! (write ex1 and enter for go back to the tool!)")
+        printearesto = "(start nmap now)"
+        print(f"Use the command: {printearesto} to start personalized attack.")
+        
+    os.system(commando)
+
 bandit_title = """
 ██████╗░░█████╗░███╗░░██╗██████╗░██╗████████╗
 ██╔══██╗██╔══██╗████╗░██║██╔══██╗██║╚══██╔══╝
@@ -104,7 +132,7 @@ bandit_title = """
 ╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░░╚═╝░░░"""
 
 start = True
-version = 1.02
+version = 1.03
 
 def clear():
    os.system("cls" if os.name == "nt" else "clear")
@@ -168,14 +196,15 @@ while True:
                 time.sleep(1)
                 clear()
                 os.system("sudo apt install nmap")
-
-
+                clear()
+                print(Fore.GREEN + "Nmap tool! (write ex1 and enter for go back to the tool!)")
+                printearesto = "(start nmap now)"
+                print(f"Use the command: {printearesto} to start personalized attack.")
+                nmapstop = False
+                while not nmapstop:
+                    nmapPersCMD()
+            
             if answer == 99:
                 clear()
                 start = False
                 break
-        
-                
-        
-
-
