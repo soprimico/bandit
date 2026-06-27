@@ -1,2 +1,0 @@
-sudo apt install python3-phonenumbers
-sudo apt install python3-exifread
