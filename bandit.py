@@ -1,4 +1,7 @@
 import os
+os.system("sudo apt install python3-phonenumbers")
+os.system("sudo apt install python3-exifread")
+os.system("cls" if os.name == "nt" else "clear")
 import time
 import random
 from colorama import init, Fore, Back, Style
@@ -122,6 +125,45 @@ def nmapPersCMD():
         print(f"Use the command: {printearesto} to start personalized attack.")
         
     os.system(commando)
+def evilwinrma():
+    global commd
+    global evilwinrm
+    global nameopalaew
+    global passopalaew
+    global ipopalaew
+    global ipv4ipwmEvilrn1
+    global commandevil
+    commd = input("bandit cmds>: ")
+    if commd == "help":
+        print(f"Put the command: {commandevil}")
+    if commd == "ex1":
+        evilwinrm = True
+        return
+    if commd == "evilrm start":
+        print("Diferent types of attack: (put command: what (number of command) for know what it does): ") 
+        print("example: what 1")
+        print("number 1: sudo start local evil")
+        print("number 2: sudo look ifOpenedPorts True")
+    if commd == "sudo start local evil":
+        clear()
+        nameopalaew = input("put here the pc name: ")
+        passopalaew = input("Put here the pc password: ")
+        ipopalaew = input("Put here the ip: ")
+        clear()
+        print("lets start >:3")
+        time.sleep(1)
+        os.system(f"sudo evil-winrm -i {ipopalaew} -u {nameopalaew} -p '{passopalaew}'")
+    if commd == "sudo look ifOpenedPorts True":
+        clear()
+        print("For looking if the ports of that pc are opened you need to put the ipv4 ip:")
+        ipv4ipwmEvilrn1 = input("Private pc ip(ipv4): ")
+        os.system(f"sudo nmap -p 5985,5986 {ipv4ipwmEvilrn1}")
+    if commd == "what 1":
+        print("The first command(number 1 command) is used for acces to other local pc form ur lan")
+    if commd == "what 2":
+        print("This one is basically for searching the needed ports, if they're opened then it should work perfectly!")
+    os.system(commd)
+    
 
 bandit_title = """
 ██████╗░░█████╗░███╗░░██╗██████╗░██╗████████╗
@@ -145,6 +187,7 @@ def options():
     print("3 ip lookup")
     print("4 image exif")
     print("5 nmap (search ports and more on networks)")
+    print("6 evil-winrm: Access to pc (like ssh)")
     print("99 exit")
 
 def returning():
@@ -203,7 +246,21 @@ while True:
                 nmapstop = False
                 while not nmapstop:
                     nmapPersCMD()
-            
+            if answer == 6:
+                clear()
+                print("LINUX OS NEEEDED!!!")
+                time.sleep(1)
+                clear()
+                os.system("yes | sudo apt install ruby ruby-dev build-essential")
+                os.system("yes | sudo gem install evil-winrm")
+                clear()
+                print(Fore.GREEN + "Evil-WinRM tool! (write ex1 and enter for go back to the tool!)")
+                evilwinrm = False
+                commandevil = "evilrm start"
+                print(f"Put the command: {commandevil}")
+                while not evilwinrm:
+                    evilwinrma()
+
             if answer == 99:
                 clear()
                 start = False
