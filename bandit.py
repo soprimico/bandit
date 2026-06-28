@@ -209,6 +209,7 @@ while True:
             init()
             print(Fore.RED + bandit_title)
             print(Fore.LIGHTRED_EX + Style.BRIGHT + "We're BANDIT")
+            print("Who made this: bielicus")
             options()
             answer = int(input("Choose one number and press enter: "))
             if answer == 0:
